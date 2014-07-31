@@ -31,6 +31,10 @@ class UserController extends Controller
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
+			array('allow',
+					'actions' => array('payment'),
+					'users'=>array('*')
+			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
 				'users'=>array('@'),
@@ -141,6 +145,36 @@ class UserController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionRegister() 
+	{
+		  $this->render('register',array('model'=>$model));
+    }
+	
+	public function actionPayment()
+	{
+		$model=new User('payment');
+
+		// uncomment the following code to enable ajax-based validation
+		/*
+		if(isset($_POST['ajax']) && $_POST['ajax']==='user-payment-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		*/
+
+		if(isset($_POST['User']))
+		{
+			$model->attributes=$_POST['User'];
+			if($model->validate())
+			{
+				// form inputs are valid, do something here
+				return;
+			}
+		}
+		$this->render('payment',array('model'=>$model));
 	}
 
 	/**

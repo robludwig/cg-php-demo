@@ -8,5 +8,10 @@ $this->breadcrumbs=array(
 ?>
 <h1>About</h1>
 
-<p>This is a "static" page. You may change the content of this page
-by updating the file <code><?php echo __FILE__; ?></code>.</p>
+Take a look around! This is an open source demo site showing how to implement
+a simple firewall using CheddarGetter to make the payment processing easier.
+We're hosting the page, and the source is <a href='https://github.com/robludwig/cg-php-demo'>
+available on GitHub</a> for you to peruse and see how things were implemented.
+<p>
+<br>
+If you have additional questions, write to us using the contact page!

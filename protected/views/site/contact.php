@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+If you have questions about how the site works or how you can use CheddarGetter in your own site, send me a message!
 </p>
 
 <div class="form">

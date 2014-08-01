@@ -99,6 +99,7 @@ class SiteController extends Controller
 	}
 	public function actionShow()
 	{
+		if(Yii::app()->user->isGuest) $this->redirect(Yii::app()->getModule('user')->loginUrl);
 		$this->render('show');
 	}
 	/**

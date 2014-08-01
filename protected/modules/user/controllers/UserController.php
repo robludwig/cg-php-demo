@@ -25,7 +25,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('view', 'index'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -50,7 +50,13 @@ class UserController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('User', array(
+		 if (Yii::app()->user->isGuest) {
+            //redirect to login if guest
+			$this->redirect(Yii::app()->controller->module->loginUrl);
+		}
+		else {
+            if (Yii::app()->getModule('user')->isAdmin()) {
+        		$dataProvider=new CActiveDataProvider('User', array(
 			'criteria'=>array(
 		        'condition'=>'status>'.User::STATUS_BANNED,
 		    ),
@@ -58,11 +64,18 @@ class UserController extends Controller
 			'pagination'=>array(
 				'pageSize'=>Yii::app()->controller->module->user_page_size,
 			),
-		));
+			));
 
-		$this->render('index',array(
+			$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+			));
+			}
+         else {
+			$admin = Yii::app()->getModule('user')->isAdmin();
+                throw new CHttpException(403, "You are not authorized to perform that. Are you an admin? $admin");
+            }
+		
+		}
 	}
 
 	/**

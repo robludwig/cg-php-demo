@@ -71,7 +71,7 @@ class UserController extends Controller
 			));
 			}
          else {
-			$admin = Yii::app()->getModule('user')->isAdmin();
+			$admin = (boolean) Yii::app()->getModule('user')->isAdmin();
                 throw new CHttpException(403, "You are not authorized to perform that. Are you an admin? $admin");
             }
 		

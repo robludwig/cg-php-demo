@@ -3,16 +3,13 @@
 class PaymentController extends Controller
 {
 	private $_model;
+	public $defaultAction = 'payment';
 	public function actionPayment()
 	{
 		$user = $this->loadUser();
-		$this->render('payment');
-	}
-	
-	public function actionIndex()
-	{
-		$user = $this->loadUser();
-		$this->render('payment');
+		 $this->render('payment',array(
+	    	'user'=>$user,
+	    ));
 	}
 
 	// Uncomment the following methods and override them if needed

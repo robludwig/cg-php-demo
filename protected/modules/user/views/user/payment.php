@@ -4,3 +4,4 @@ $this->breadcrumbs=array(
 	UserModule::t("Upgrade Plan"),
 );
 ?>
+<h1> Your current plan is <?php echo CHtml::encode($model->username)?></h1>

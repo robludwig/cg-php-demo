@@ -3,16 +3,14 @@
 class PlanController extends Controller
 {
 	private $_model;
+	public $defaultAction = 'plan';
 
 	public function actionPlan()
 	{
 		$user = $this->loadUser();
-		$this->render('plan');
-	}
-	public function actionIndex()
-	{	
-		$user = $this->loadUser();
-		$this->render('plan');
+		$this->render('plan',array(
+	    	'user'=>$user,
+	    ));
 	}
 
 	// Uncomment the following methods and override them if needed

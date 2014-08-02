@@ -2,13 +2,16 @@
 
 class PaymentController extends Controller
 {
+	private $_model;
 	public function actionPayment()
 	{
+		$user = $this->loadUser();
 		$this->render('payment');
 	}
 	
 	public function actionIndex()
 	{
+		$user = $this->loadUser();
 		$this->render('payment');
 	}
 
@@ -38,4 +41,20 @@ class PaymentController extends Controller
 		);
 	}
 	*/
+		/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the primary key value. Defaults to null, meaning using the 'id' GET variable
+	 */
+	public function loadUser()
+	{
+		if($this->_model===null)
+		{
+			if(Yii::app()->user->id)
+				$this->_model=Yii::app()->controller->module->user();
+			if($this->_model===null)
+				$this->redirect(Yii::app()->controller->module->loginUrl);
+		}
+		return $this->_model;
+	}
 }

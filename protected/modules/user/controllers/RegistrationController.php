@@ -1,5 +1,4 @@
 <?php
-
 class RegistrationController extends Controller
 {
 	public $defaultAction = 'registration';
@@ -16,6 +15,15 @@ class RegistrationController extends Controller
 			),
 		);
 	}
+	public function actionMilton(){
+		$retVal = Yii::app()->cheddar->killMilton();
+		$this->render('/user/message', array(
+			'title'=>'delete milton?',
+			'content'=>$retVal
+			)
+		);
+	}
+	
 	/**
 	 * Registration user
 	 */
@@ -47,12 +55,14 @@ class RegistrationController extends Controller
                     $model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 
                     if ($model->save()) {
+						$data = array(
+							'email' => $model->email,
+							'first' => $profile->firstname,
+							'last' =>  $profile->lastname,
+						);
+						$cheddar_response = Yii::app()->cheddar->addFreeUser($data);
                         $profile->user_id=$model->id;
                         $profile->save();
-                        if (Yii::app()->controller->module->sendActivationMail) {
-                            $activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-                            UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
-                        }
 
                         if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {
                                 $identity=new UserIdentity($model->username,$soucePassword);
@@ -67,7 +77,7 @@ class RegistrationController extends Controller
                             } elseif(Yii::app()->controller->module->loginNotActiv) {
                                 Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email or login."));
                             } else {
-                                Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email."));
+                                Yii::app()->user->setFlash('registration',UserModule::t("Thank you for your registration. Please check your email.\n CG status: " . $cheddar_response));
                             }
                             $this->refresh();
                         }

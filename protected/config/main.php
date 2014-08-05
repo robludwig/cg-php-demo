@@ -83,6 +83,10 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+		'cheddar'=>array(
+			'class'=>'CheddarGetterClient',
+		
+		),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

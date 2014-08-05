@@ -90,12 +90,12 @@ class CheddarGetter_Client {
 
 		if (!$adapter) {
       // default adapter
-			if (class_exists('Zend_Http_Client')) {
-				$adapter = new CheddarGetter_Client_ZendAdapter();
+		//	if (class_exists('Zend_Http_Client')) {
+			//	$adapter = new CheddarGetter_Client_ZendAdapter();
       // use curl if zf is not available
-			} else {
+			//} else {
 				$adapter = new CheddarGetter_Client_CurlAdapter();
-			}
+		//	}
 		}
 		$this->_httpClient = $adapter;
 	}
@@ -937,11 +937,11 @@ class CheddarGetter_Client {
 	 */
 	static public function getRequestAdapter() {
 		if (!self::$_requestAdapter) {
-			if (class_exists('Zend_Controller_Front')) {
-				self::$_requestAdapter = new CheddarGetter_Http_ZendAdapter();
-			} else {
+			//if (class_exists('Zend_Controller_Front')) {
+				//self::$_requestAdapter = new CheddarGetter_Http_ZendAdapter();
+			//} else {
 				self::$_requestAdapter = new CheddarGetter_Http_NativeAdapter();
-			}
+			//}
 		}
 
 		return self::$_requestAdapter;

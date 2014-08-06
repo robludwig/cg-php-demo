@@ -8,8 +8,9 @@ class PlanController extends Controller
 	public function actionPlan()
 	{
 		$user = $this->loadUser();
+		$plan = Yii::app()->cheddar->getClientPlanByEmail($user->email);
 		$this->render('plan',array(
-	    	'user'=>$user,
+	    	'plan'=>$plan,
 	    ));
 	}
 

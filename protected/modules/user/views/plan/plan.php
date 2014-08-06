@@ -4,5 +4,5 @@ $this->breadcrumbs=array(
 	UserModule::t("Current Plan"),
 );
 ?>
-<h1> Your current plan is <?php echo CHtml::encode($user->username)?></h1>
+<h1> Your current plan is <?php echo $plan?></h1>
 <p>To change it, go <?php echo CHtml::link('here.', $this->createUrl('/user/payment'));?>

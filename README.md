@@ -9,6 +9,7 @@ in the root of the project.
 Then, edit the main config file located in protected/config to pass your
 CheddarGetter API information to the CG component. You should have an 
 array that looks something like
+````
     'cheddar'=>array(
     			'class'=>'CheddarGetterClient',
     			'cgurl'=>'www.cheddargetter.com',
@@ -16,7 +17,7 @@ array that looks something like
     			'cgpass'=>'hunter2',
     			'cgapp'=>'APP_NAME',
     		),
-			
+````			
 so we can make API calls on your behalf. You should also edit the db credentials
 to properly point to your preferred database.
 

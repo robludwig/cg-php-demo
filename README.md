@@ -1,25 +1,68 @@
 cg-php-demo
 ===========
-A demo of the CheddarGetter api and PHP library as a simple service
+A demo of the CheddarGetter API and PHP library as a simple service using the
+[Yii framework](http://www.yiiframework.com/) and
+[Vagrant](http://www.vagrantup.com/) with
+[VirtualBox](https://www.virtualbox.org/)
 
+## Setup
 
-To set up, clone the repo and set up a virtualhost to point to index.php
-in the root of the project.
+### Get Vagrant and VirtualBox
+
+If you don't already use them, download
+[Vagrant](http://www.vagrantup.com/downloads.html) and
+[VirtualBox](https://www.virtualbox.org/wiki/Downloads) for your OS.
+
+### Get the Code
+
+Clone the repo and `vagrant up`. Better yet, fork and clone if you're
+planning to contribute or if there's even the most remote possibility that you
+will contribute improvements to the project. **Pull requests welcome!**
+
+In a terminal:
+
+```bash
+$ cd cg-php-demo
+$ vagrant up
+```
+
+That'll take a few minutes. Once complete, you'll have a virtualized
+dev environment running.
+
+### Signup for a Free CheddarGetter Account
+
+If you haven't done so already,
+[signup for CheddarGetter](https://cheddargetter.com/signup). Create your
+product account and complete the quick-start wizard. It only takes a few
+minutes. If you have questions about how it works,
+[CheddarGetter support](http://support.cheddargetter.com/disucussion/new) is
+usually quick to respond.
+
+Now have a coffee and relax.
 
 Then, edit the main config file located in protected/config to pass your
-CheddarGetter API information to the CG component. You should have an 
-array that looks something like
-````
-    'cheddar'=>array(
-    			'class'=>'CheddarGetterClient',
-    			'cgurl'=>'www.cheddargetter.com',
-    			'cgemail'=>'you@youremail.com',
-    			'cgpass'=>'hunter2',
-    			'cgapp'=>'APP_NAME',
-    		),
-````			
-so we can make API calls on your behalf. You should also edit the db credentials
-to properly point to your preferred database.
+CheddarGetter API information to the CG component. You should have an
+array that looks something like:
 
-Finally, run the SQL in protected/modules/user/data/schema.mysql.sql through
+```php
+  'cheddar'=>array(
+    'class'=>'CheddarGetterClient',
+		'cgurl'=>'www.cheddargetter.com',
+		'cgemail'=>'you@youremail.com',
+		'cgpass'=>'hunter2',
+		'cgapp'=>'APP_NAME',
+	),
+```
+so we can make API calls to the proper account. You should also edit the db
+credentials to properly point to your preferred database.
+
+Finally, run the SQL in protected/modules/user/data/schema.*.sql through
 your favorite SQL program so we can properly create and track users.
+
+## Contributing
+
+1. [Fork it](https://help.github.com/articles/fork-a-repo)
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new [Pull Request](https://help.github.com/articles/using-pull-requests)

@@ -22,7 +22,7 @@ will contribute improvements to the project. **Pull requests welcome!**
 In a terminal:
 
 ```bash
-$ cd cg-php-demo
+$ cd cg-yii-demo
 $ vagrant up
 ```
 

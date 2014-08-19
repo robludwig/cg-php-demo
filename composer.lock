@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "68210575fd4794dc5609522a4f723633",
+    "packages": [
+        {
+            "name": "cheddar-getter/client",
+            "version": "v1.0.1",
+            "target-dir": "CheddarGetter",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marcguyer/cheddargetter-client-php.git",
+                "reference": "f8ccebca455e4cd0a26c685eb3128f753bd23d6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marcguyer/cheddargetter-client-php/zipball/f8ccebca455e4cd0a26c685eb3128f753bd23d6f",
+                "reference": "f8ccebca455e4cd0a26c685eb3128f753bd23d6f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "CheddarGetter_": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Guyer",
+                    "email": "marc@cheddargetter.com"
+                }
+            ],
+            "description": "The official PHP client for the CheddarGetter API",
+            "homepage": "https://cheddargetter.com/developers",
+            "keywords": [
+                "CheddarGetter"
+            ],
+            "time": "2012-02-08 17:05:57"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "prefer-stable": false,
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

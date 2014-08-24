@@ -1,4 +1,4 @@
-cg-php-demo
+cg-yii-demo
 ===========
 A demo of the CheddarGetter API and PHP library as a simple service using the
 [Yii framework](http://www.yiiframework.com/) and
@@ -22,12 +22,25 @@ will contribute improvements to the project. **Pull requests welcome!**
 In a terminal:
 
 ```bash
-$ cd cg-php-demo
+$ cd cg-yii-demo
 $ vagrant up
 ```
 
 That'll take a few minutes. Once complete, you'll have a virtualized
-dev environment running.
+dev environment running. For the curious, here's a general overview of what
+vagrant is doing (FYI):
+
+* Creates a virtual machine via VirtualBox: an Ubuntu 14.04 basic install.
+* Creates a forwarded port from your host machine to the guest vm (8023 to 80).
+So, once provisioned, you can go to http://localhost:8023 to see the demo.
+* Automatically install (via [Puppet](http://puppetlabs.com/)) all of the
+software required to run the demo:
+  * PHP
+  * Composer
+    * Yii Framework
+    * CheddarGetter Client Library
+  * Apache
+  * MySQL
 
 ### Signup for a Free CheddarGetter Account
 

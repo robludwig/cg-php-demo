@@ -12,6 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty64"
 
+  config.vm.hostname = "cg-yii-demo"
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -47,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider "virtualbox" do |vb|
 
-    vb.name = "cg-demo"
+    vb.name = config.vm.hostname
 
   #   # Don't boot with headless mode
   #   vb.gui = true
@@ -76,9 +78,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # end
 
   config.vm.provision :shell do |shell|
-    shell.inline = "puppet module install puppetlabs-concat --force \
-            && puppet module install puppetlabs-stdlib --force \
-            && puppet module install puppetlabs-apache --force"
+    # install all required puppet modules
+    shell.inline = "echo 'Installing puppet modules' \
+      && { puppet module list | grep puppetlabs-concat > /dev/null; } || \
+        puppet module install puppetlabs-concat \
+      && { puppet module list | grep puppetlabs-stdlib > /dev/null; } || \
+          puppet module install puppetlabs-stdlib \
+      && { puppet module list | grep puppetlabs-apache > /dev/null; } || \
+        puppet module install puppetlabs-apache \
+      && { puppet module list | grep puppetlabs-vcsrepo > /dev/null; } || \
+        puppet module install puppetlabs-vcsrepo \
+      && { puppet module list | grep puppetlabs-git > /dev/null; } || \
+        puppet module install puppetlabs-git \
+      && { puppet module list | grep tPl0ch-composer > /dev/null; } || \
+        puppet module install tPl0ch-composer"
   end
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
